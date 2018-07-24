@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-  <template name="Evaluacion" id="evaluacion">
+  <template name="Evaluacion" id="evaluacion" page="True"> 
     <t t-call="website.layout">
       <div id="wrap">
 

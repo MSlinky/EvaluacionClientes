@@ -4,7 +4,7 @@ from odoo import models
 import sys
 
 class EvaluacionClientes(http.Controller):
-	@http.route('/evaluacion/<id>', auth='public', website=True)
+	@http.route('/evaluacion/<id>', type='http', auth='public', website=True)
 	def index(self, id):
 		http.request.env.cr.execute("SELECT status FROM evaluacion_model WHERE id = "+str(id))
 
