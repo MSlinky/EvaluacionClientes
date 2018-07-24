@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+	<template id="assets_backend_evaluacion" name="point_of_sale assets" inherit_id="point_of_sale.assets">
+	    <xpath expr="." position="inside">
+	    	<script type="text/javascript" src="/EvaluacionClientes/static/js/evaluacion.js"></script>
+        </xpath>
+	</template>
+
+	<template id="script_theme" name="script_theme" inherit_id="web.assets_frontend">
+	    <xpath expr="." position="inside">
+	    	<script type="text/javascript"  src="/EvaluacionClientes/static/js/sendEval.js"></script>
+        </xpath>
+	</template>
+</odoo>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <template name="Evaluacion" id="evaluacion">
+    <t t-call="website.layout">
+      <div id="wrap">
+
+        <div class="oe_structure"/>
+
+        <div class="container">
+
+          <style type="text/css">
+            .input-group {
+              width: 100%;
+              margin: 20px 0;
+            }
+          </style>
+
+          <h1 class="text-center">Evaluación</h1>
+
+          <form id="sendEval">
+            <div class="form-group">
+
+              <div class="row">
+                <div class="col-sm-12 col-md-6">
+                  <div class="input-group">
+                    <label for="tiempoLlegada" class="control-label">El tiempo de arribo fué:</label>
+                    <select class="form-control" name="tiempoLlegada">
+                      <option value=""></option>
+                      <option value="excelente">Excelente</option>
+                      <option value="bueno">Bueno</option>
+                      <option value="regular">Regular</option>
+                      <option value="malo">Malo</option>
+                    </select>
+                  </div>
+
+                  <div class="input-group">
+                    <label for="cuidado" class="control-label">El cuidado con el que se realizo el servicio fué:</label>
+                    <select class="form-control" name="cuidado">
+                      <option value=""></option>
+                      <option value="excelente">Excelente</option>
+                      <option value="bueno">Bueno</option>
+                      <option value="regular">Regular</option>
+                      <option value="malo">Malo</option>
+                    </select>
+                  </div>
+
+                  <div class="input-group">
+                    <label for="consideraciones" class="control-label">Considera que las refacciones y materiales utilizados son:</label>
+                    <select class="form-control" name="consideraciones">
+                      <option value=""></option>
+                      <option value="excelente">Excelente</option>
+                      <option value="bueno">Bueno</option>
+                      <option value="regular">Regular</option>
+                      <option value="malo">Malo</option>
+                    </select>
+                    <div class="input-group">
+                      <label for="volver" class="control-label">¿Porque?</label>
+                      <textarea class="form-control" name="consideracionesPorque"></textarea>
+                    </div>
+                  </div>
+
+                  <div class="input-group">
+                    <label for="volver" class="control-label">De llegar a requerir un servicio semejante a este, volvería a llamarnos:</label>
+                    <select class="form-control" name="volver">
+                      <option value=""></option>
+                      <option value="si">Si</option>
+                      <option value="no">No</option>
+                    </select>
+                    <div class="input-group">
+                      <label for="volver" class="control-label">¿Porque?</label>
+                      <textarea class="form-control" name="volverPorque"></textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-12 col-md-6">
+
+                  <div class="input-group">
+                    <label for="atencion" class="control-label">La atención del técnico fué:</label>
+                    <select class="form-control" name="atencion">
+                      <option value=""></option>
+                      <option value="excelente">Excelente</option>
+                      <option value="bueno">Bueno</option>
+                      <option value="regular">Regular</option>
+                      <option value="malo">Malo</option>
+                    </select>
+                  </div>
+
+                  <div class="input-group">
+                    <label for="arreglo" class="control-label">El arreglo del técnico fué:  </label>
+                    <select class="form-control" name="arreglo">
+                      <option value=""></option>
+                      <option value="excelente">Excelente</option>
+                      <option value="bueno">Bueno</option>
+                      <option value="regular">Regular</option>
+                      <option value="malo">Malo</option>
+                    </select>
+                  </div>
+
+                  <div class="input-group">
+                    <label for="herramientas" class="control-label">Considera que el técnico contaba con las herramientas necesarias:</label>
+                    <select class="form-control" name="herramientas">
+                      <option value=""></option>
+                      <option value="si">Si</option>
+                      <option value="no">No</option>
+                    </select>
+                    <div class="input-group">
+                      <label for="volver" class="control-label">¿Porque?</label>
+                      <textarea class="form-control" name="herramientasPorque"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <label for="volver" class="control-label">Observaciones y/o comentarios</label>
+                  <textarea class="form-control" name="observaciones"></textarea>
+                </div>
+              </div>
+            </div> 
+            <center><input class="btn btn-primary" type="submit" value="Enviar"/></center>     
+          </form>
+          <script type="text/javascript">
+            sendEval();
+          </script>
+        </div>
+      </div>
+    </t>
+  </template>
+  <record id="services_page_news" model="website.page">
+    <field name="name">Evaluacion</field>
+    <field name="website_published">True</field>
+    <field name="url">/Evaluacion</field>
+    <field name="view_id" ref="evaluacion"/>
+    <field name="sequence" type="int">2</field>
+  </record>
+</odoo>

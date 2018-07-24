@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+        <!-- window action -->
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        
+          <record model="ir.ui.view" id="evaluacion_form_action">
+            <field name="name">Formulario de evaluaciones</field>
+            <field name="model">encuesta.model</field>
+            <field name="arch" type="xml">
+                <form string="Course Form">
+                    <sheet>
+                      <group colspan="2">
+                        <group>
+                         <field name="tiempoLlegada"/>
+                         <field name="cuidadoTecnico"/>
+                        </group>
+                        <group>
+                         <field name="atencionTecnico"/>
+                         <field name="arregloTecnico"/>
+                        </group>
+                      </group>
+
+                      <group colspan="2">
+                        <group>
+                          <field name="refacciones"/>
+                          <field name="whyRefacciones"/>
+                        </group>
+                        <group>
+                          <field name="herramientas"/>
+                          <field name="whyherramientas"/>
+                        </group>
+                        <group>
+                          <field name="volver"/>
+                          <field name="whyvolver"/>
+                        </group>
+                      </group>
+
+                      <group>
+                        <field name="observaciones"/>
+                      </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="evaluacion_tree_action">
+          <field name="name">Vista de evaluaciones</field>
+          <field name="model">encuesta.model</field>
+           <field name="arch" type="xml">
+              <tree>
+                  <field name="create_date"/>
+                  <field name="tiempoLlegada"/>
+              </tree>
+          </field>
+        </record>
+
+        <record model="ir.ui.view" id="encargados_tree_action">
+          <field name="name">Vista de encargados</field>
+          <field name="model">evaluacion.model</field>
+           <field name="arch" type="xml">
+              <tree>
+                  <field name="create_date"/>
+                  <field name="socio_id"/>
+                  <field name="cliente_id"/>
+              </tree>
+          </field>
+        </record>
+      
+
+        <record model="ir.actions.act_window" id="evaluacion_list_action">
+            <field name="name">Evaluaciones</field>
+            <field name="res_model">encuesta.model</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Crear una evaluación
+                </p>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="encargados_eval">
+            <field name="name">Encargados</field>
+            <field name="res_model">evaluacion.model</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Encargados</p>
+            </field>
+        </record>
+
+        <!--<record id="group_manager" model="res.groups">
+            <field name="name">Evaluacion / Administrador</field>
+        </record>
+
+        <record id="add_evaluacion" model="ir.rule">
+            <field name="name">Agregar evaluaciones</field>
+            <field name="model_id" ref="evaluacion.model"/>
+            <field name="groups" eval="[(4, ref('evaluacion.group_manager'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1" />
+            <field name="domain_force">[('state','=','cancel')]</field>
+        </record>-->
+
+        <!-- top level menu: no parent -->
+        <menuitem id="main_evaluacion_menu" name="Evaluacion de clientes"/>
+        <!-- A first level in the left side menu is needed
+             before using action= attribute -->
+        <menuitem id="evaluacion_menu" name="Evaluacion de clientes "
+                  parent="main_evaluacion_menu"/>
+        <!-- the following menuitem should appear *after*
+             its parent openacademy_menu and *after* its
+             action course_list_action -->
+
+        <menuitem id="list_encargados" name="Encargados" parent="evaluacion_menu"
+                  action="encargados_eval"/>
+
+        <menuitem id="list_menu" name="Evaluaciones" parent="evaluacion_menu"
+                  action="evaluacion_list_action"/>
+        <!-- Full id location:
+             action="evaluacion.model"
+             It is not required when it is the same module -->
+            
+</odoo>
