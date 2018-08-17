@@ -15,6 +15,12 @@
                     <sheet>
                       <group colspan="2">
                         <group>
+                         <field name="estrellas"/>
+                        </group>
+                      </group>
+
+                      <group colspan="2">
+                        <group>
                          <field name="tiempoLlegada"/>
                          <field name="cuidadoTecnico"/>
                         </group>

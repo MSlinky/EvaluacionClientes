@@ -13,14 +13,60 @@
               width: 100%;
               margin: 20px 0;
             }
+            .clasificacion label{ color:grey;}
+            .clasificacion input[type = "radio"]{ display:none;}
+            .clasificacion{
+              direction: rtl;/* right to left */
+              unicode-bidi: bidi-override;/* bidi de bidireccional */
+            }
+            .clasificacion label:hover{color:orange;}
+            .clasificacion label:hover ~ label{color:orange;}
+            .clasificacion input[type = "radio"]:checked ~ label{color:orange;}
+
+            .clasificacion input[type="radio"] {
+              display: none;
+            }
+
+            .clasificacion label {
+              color: grey;
+            }
+
+            .clasificacion {
+              direction: rtl;
+              unicode-bidi: bidi-override;
+            }
+
+            .clasificacion label:hover,
+            .clasificacion label:hover ~ label {
+              color: orange;
+            }
+
+            .clasificacion input[type="radio"]:checked ~ label {
+              color: orange;
+            }
+            .stars{
+              font-size: 3em;
+            }
           </style>
 
-          <h1 class="text-center">Evaluación</h1>
+          <h1 class="text-center" style="margin: auto;">Evaluación</h1>
 
           <form id="sendEval">
             <div class="form-group">
 
               <div class="row">
+                <div class="col-12 clasificacion" style="text-align:center">
+                  <input id="radio1" type="radio" name="estrellas" value="5" />
+                  <label class="stars" for="radio1">★</label>
+                  <input id="radio2" type="radio" name="estrellas" value="4" />
+                  <label class="stars" for="radio2">★</label>
+                  <input id="radio3" type="radio" name="estrellas" value="3" />
+                  <label class="stars" for="radio3">★</label>
+                  <input id="radio4" type="radio" name="estrellas" value="2" />
+                  <label class="stars" for="radio4">★</label>
+                  <input id="radio5" type="radio" name="estrellas" value="1" />
+                  <label class="stars" for="radio5">★</label>
+                </div>
                 <div class="col-sm-12 col-md-6">
                   <div class="input-group">
                     <label for="tiempoLlegada" class="control-label">El tiempo de arribo fué:</label>

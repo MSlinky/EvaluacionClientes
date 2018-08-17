@@ -25,18 +25,79 @@ class EvaluacionClientes(http.Controller):
 
 		print (vars['data']['consideraciones'])
 
+		if ('tiempoLlegada' in vars['data']):
+			tiempoLlegada = vars['data']['tiempoLlegada']
+		else :
+			tiempoLlegada = ''
+
+		if ('atencion' in vars['data']):
+			atencion = vars['data']['atencion']
+		else :
+			atencion = ''
+
+		if ('arreglo' in vars['data']):
+			arreglo = vars['data']['arreglo']
+		else :
+			arreglo = ''
+
+		if ('cuidado' in vars['data']):
+			cuidado = vars['data']['cuidado']
+		else :
+			cuidado = ''
+
+		if ('consideraciones' in vars['data']):
+			consideraciones = vars['data']['consideraciones']
+		else :
+			consideraciones = ''
+
+		if ('consideracionesPorque' in vars['data']):
+			consideracionesPorque = vars['data']['consideracionesPorque']
+		else :
+			consideracionesPorque = ''
+
+		if ('herramientas' in vars['data']):
+			herramientas = vars['data']['herramientas']
+		else :
+			herramientas = ''
+
+		if ('herramientasPorque' in vars['data']):
+			herramientasPorque = vars['data']['herramientasPorque']
+		else :
+			herramientasPorque = ''
+
+		if ('volver' in vars['data']):
+			volver = vars['data']['volver']
+		else :
+			volver = ''
+
+		if ('volverPorque' in vars['data']):
+			volverPorque = vars['data']['volverPorque']
+		else :
+			volverPorque = ''
+
+		if ('observaciones' in vars['data']):
+			observaciones = vars['data']['observaciones']
+		else :
+			observaciones = ''
+		
+		if ('estrellas' in vars['data']):
+			estrellas = vars['data']['estrellas']
+		else :
+			estrellas = ''
+
 		save = MealType.create({ 
-				'tiempoLlegada' : vars['data']['tiempoLlegada'],
-				'atencionTecnico' : vars['data']['atencion'],
-				'arregloTecnico' : vars['data']['arreglo'],
-				'cuidadoTecnico' : vars['data']['cuidado'],
-				'refacciones' : vars['data']['consideraciones'],
-				'whyRefacciones' : vars['data']['consideracionesPorque'],
-				'herramientas' : vars['data']['herramientas'],
-				'whyherramientas' : vars['data']['herramientasPorque'],
-				'volver' : vars['data']['volver'],
-				'whyvolver' : vars['data']['volverPorque'],
-				'observaciones' : vars['data']['observaciones'],
+			'tiempoLlegada' : tiempoLlegada,
+			'atencionTecnico' : atencion,
+			'arregloTecnico' : arreglo,
+			'cuidadoTecnico' : cuidado,
+			'refacciones' : consideraciones,
+			'whyRefacciones' : consideracionesPorque,
+			'herramientas' : herramientas,
+			'whyherramientas' : herramientasPorque,
+			'volver' : volver,
+			'whyvolver' : volverPorque,
+			'observaciones' : observaciones,
+			'estrellas' : estrellas,
 			})
 
 		http.request.env.cr.execute("SELECT MAX(id) FROM encuesta_model")
@@ -136,10 +197,10 @@ class EvaluacionClientes(http.Controller):
 		
 		body = """\
 				<html>
-				  <head><style type="text/css">.pos-sale-ticket {text-align: left;width: 300px;background-color: white;margin: 20px; padding: 15px;font-size: 14px;padding-bottom: 30px;display: inline-block;font-family: "Inconsolata";border: solid 1px rgb(220,220,220);border-radius: 3px;overflow: hidden;} .btn="-moz-box-shadow: 0px 10px 14px -7px #276873;-webkit-box-shadow: 0px 10px 14px -7px #276873;box-shadow: 0px 10px 14px -7px #276873;background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #599bb3), color-stop(1, #408c99));background:-moz-linear-gradient(top, #599bb3 5%, #408c99 100%);background:-webkit-linear-gradient(top, #599bb3 5%, #408c99 100%);background:-o-linear-gradient(top, #599bb3 5%, #408c99 100%);background:-ms-linear-gradient(top, #599bb3 5%, #408c99 100%);background:linear-gradient(to bottom, #599bb3 5%, #408c99 100%);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#599bb3", endColorstr="#408c99",GradientType=0);background-color:#599bb3;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px;display:inline-block;cursor:pointer;color:#ffffff;font-family:Arial;font-size:20px;font-weight:bold;padding:13px 32px;text-decoration:none;text-shadow:0px 1px 0px #3d768a;"</style></head>
+				  <head></head>
 				  <body>
 				    """+vars['data']['ticket']+"""\
-				    <a href='"""+http.request.env['ir.config_parameter'].sudo().get_param('web.base.url')+"""/evaluacion/"""+str(result[0][0])+"""'><center><div class="btn">Contestar encuesta</div></center></a>
+				    <a style="text-decoration: none;" href='"""+http.request.env['ir.config_parameter'].sudo().get_param('web.base.url')+"""/evaluacion/"""+str(result[0][0])+"""'><center><div class="btn" style="background-color: #e66231;color: white;font-size: 3em;font-weight: bold;    -webkit-box-shadow: 0 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12), 0 8px 10px -7px rgba(0,0,0,0.2);box-shadow: 0 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12), 0 8px 10px -7px rgba(0,0,0,0.2)">Contestar encuesta</div></center></a>
 				  </body>
 				</html>
 				"""

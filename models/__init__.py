@@ -3,6 +3,8 @@ from odoo import models, fields
 class EncuestaClientes(models.Model):
 	_name = 'encuesta.model'
 
+	estrellas = fields.Selection([('1','1'),('2','2'),('3','3'),('4','4'),('5','5')],'Nivel: ')
+	
 	tiempoLlegada = fields.Selection([('excelente','Excelente'),('bueno','Bueno'), ('regular','Regular'), ('malo','Malo')],'El tiempo de arribo fué: ')
 	atencionTecnico = fields.Selection([('excelente','Excelente'),('bueno','Bueno'), ('regular','Regular'), ('malo','Malo')],'La atención del técnico fué: ')
 	arregloTecnico = fields.Selection([('excelente','Excelente'),('bueno','Bueno'), ('regular','Regular'), ('malo','Malo')],'El arreglo del técnico fué: ')
