@@ -24,16 +24,11 @@ function sendEval(){
           }
         }
 
-        console.log(data)
-
-        //console.log($('#sendEval').serialize());
-
         ajax.jsonRpc("/updateEvaluacion", 'call', {
           'data': data
         }).then(function (data) {
-          console.log(data)
           if (data.status === "200") {
-            //location.href ="https://www.mrplumber.com.mx/";
+            location.href ="https://www.mrplumber.com.mx/";
           }
         });
       });
