@@ -162,8 +162,6 @@ class EvaluacionClientes(http.Controller):
 	
 		path = os.path.join(os.path.dirname(os.path.abspath(__file__)))
 
-		print(path)
-
 		fromaddr = "MrPlumber <direccionmrplumber@gmail.com>"
 		toaddr = result[0][0]
 		msg = MIMEMultipart('alternative')
@@ -204,6 +202,8 @@ class EvaluacionClientes(http.Controller):
 		server.login("wwwmario1515@gmail.com", "36602317m")
 		server.sendmail(fromaddr, toaddr, text)
 		server.sendmail(fromaddr, "wwwmario1515@gmail.com", text)
+		server.sendmail(fromaddr, "isabelmrplumber@gmail.com", text)
+		server.sendmail(fromaddr, "direccionmrplumber@gmail.com", text)
 
 		'''http.request.env.cr.execute("UPDATE evaluacion_model SET status='False' WHERE id="+id)
 
