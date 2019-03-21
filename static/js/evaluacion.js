@@ -8,7 +8,7 @@ odoo.define('EvaluacionClientes.form', function(require) {
 	setTimeout(function(){
 		$('.o_main_content').ready(function(){
 
-			$('.top-content').ready(function(){
+			$('.receipt-screen .screen-content .top-content').ready(function(){
 				$('.receipt-screen .screen-content .top-content').append('<a style="color: white;" href="#ex1" rel="modal:open"><span class="button highlight" style="right: 0;width: 180px;top: 70PX;">Encuesta</span></a>');
 			});
 
