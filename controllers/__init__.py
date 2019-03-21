@@ -164,7 +164,7 @@ class EvaluacionClientes(http.Controller):
 
 		print(path)
 
-		fromaddr = "direccionmrplumber@gmail.com"
+		fromaddr = "MrPlumber <direccionmrplumber@gmail.com>"
 		toaddr = result[0][0]
 		msg = MIMEMultipart('alternative')
 		
@@ -203,7 +203,7 @@ class EvaluacionClientes(http.Controller):
 		server.starttls()
 		server.login("wwwmario1515@gmail.com", "36602317m")
 		server.sendmail(fromaddr, toaddr, text)
-		server.sendmail(fromaddr, "wwwmario15@hotmail.com", text)
+		server.sendmail(fromaddr, "wwwmario1515@gmail.com", text)
 
 		'''http.request.env.cr.execute("UPDATE evaluacion_model SET status='False' WHERE id="+id)
 
