@@ -168,7 +168,7 @@ class EvaluacionClientes(http.Controller):
 		toaddr = result[0][0]
 		msg = MIMEMultipart('alternative')
 		
-		msg['From'] = fromaddr
+		msg['From'] = 'direccionmrplumber@gmail.com'
 		msg['To'] = toaddr
 		msg['Subject'] = "MrPlumber"
 
@@ -202,7 +202,7 @@ class EvaluacionClientes(http.Controller):
 		server = smtplib.SMTP('smtp.gmail.com', 587)
 		server.starttls()
 		server.login(fromaddr, "36602317m")
-		server.sendmail(fromaddr, toaddr, text)
+		server.sendmail('direccionmrplumber@gmail.com', toaddr, text)
 
 		'''http.request.env.cr.execute("UPDATE evaluacion_model SET status='False' WHERE id="+id)
 
