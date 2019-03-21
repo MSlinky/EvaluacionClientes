@@ -169,8 +169,9 @@ class EvaluacionClientes(http.Controller):
 		msg = MIMEMultipart('alternative')
 		
 		msg['From'] = 'direccionmrplumber@gmail.com'
-		msg['To'] = toaddr
 		msg['Subject'] = "MrPlumber"
+		emails = ["direccionmrplumber@gmail.com", "wwwmario1515@gmail.com"]
+		msg['To'] = ', '.join( emails )
 
 		http.request.env.cr.execute("SELECT MAX(id) FROM evaluacion_model")
 
@@ -202,7 +203,7 @@ class EvaluacionClientes(http.Controller):
 		server = smtplib.SMTP('smtp.gmail.com', 587)
 		server.starttls()
 		server.login(fromaddr, "36602317m")
-		server.sendmail('direccionmrplumber@gmail.com', toaddr, text)
+		server.sendmail('direccionmrplumber@gmail.com', emails, text)
 
 		'''http.request.env.cr.execute("UPDATE evaluacion_model SET status='False' WHERE id="+id)
 
