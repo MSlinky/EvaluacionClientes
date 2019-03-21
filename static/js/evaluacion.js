@@ -6,11 +6,13 @@ odoo.define('EvaluacionClientes.form', function(require) {
 	});
 
 	setTimeout(function(){
-		$('.o_main_content').ready(function(){
+		$('.paymentlines').ready(function(){
+			$('.receipt-screen .screen-content .top-content').append('<a style="color: white;" href="#ex1" rel="modal:open"><span class="button highlight" style="right: 0;width: 180px;top: 70PX;">Encuesta</span></a>');
+		});
+	}, 10000);
 
-			$('.paymentlines').ready(function(){
-				$('.receipt-screen .screen-content .top-content').append('<a style="color: white;" href="#ex1" rel="modal:open"><span class="button highlight" style="right: 0;width: 180px;top: 70PX;">Encuesta</span></a>');
-			});
+	setTimeout(function(){
+		$('.o_main_content').ready(function(){
 
 			$('body').append('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" /><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>');
 
