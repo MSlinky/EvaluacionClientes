@@ -117,7 +117,6 @@ class EvaluacionClientes(http.Controller):
 	@http.route(['/saveEvaluacion'], type='json', auth="public", website=True)
 	def save(self,  **vars):
 		data = {}
-		print (sys.path)
 
 		MealType = http.request.env['evaluacion.model']
 		
@@ -137,19 +136,11 @@ class EvaluacionClientes(http.Controller):
 
 		print (save)'''
 
-		print (vars)
-
 		reference = vars['data']['pedido'].split(" ")
-
-		print(reference)
-
-		print(reference[len(reference)-1])
 
 		http.request.env.cr.execute("SELECT id, partner_id, user_id FROM pos_order WHERE pos_reference LIKE '%"+reference[len(reference)-1]+"'")
 
 		result = http.request.cr.fetchall()
-
-		print(result[0][0])
 
 		save = MealType.create({ 
 				'cliente_id' : result[0][1],
@@ -159,24 +150,19 @@ class EvaluacionClientes(http.Controller):
 
 		last_id = save and max(save)
 
-		print(last_id)
-
-
-		print('idCliente'+str(result[0][1]));
-
-
 		http.request.env.cr.execute("SELECT email FROM res_partner WHERE id = "+str(result[0][1]) )
 
 		result = http.request.cr.fetchall()
-
-		print('correo: '+str(result[0][0]))
 
 		import os
 		import smtplib
 		from email.mime.multipart import MIMEMultipart
 		from email.mime.text import MIMEText
-		from email.mime.base import MIMEBase
-		from email import encoders
+		from email.mime.image import MIMEImage
+	
+		path = os.path.join(os.path.dirname(os.path.abspath(__file__)))
+
+		print(path)
 
 		fromaddr = "wwwmario1515@gmail.com"
 		toaddr = result[0][0]
@@ -186,28 +172,31 @@ class EvaluacionClientes(http.Controller):
 		msg['To'] = toaddr
 		msg['Subject'] = "MrPlumber"
 
-
 		http.request.env.cr.execute("SELECT MAX(id) FROM evaluacion_model")
 
 		result = http.request.cr.fetchall()
 
-		print('ultimo id')
-
-		print(result[0][0])
-		
 		body = """\
 				<html>
 				  <head></head>
 				  <body>
-				    """+vars['data']['ticket']+"""\
 				    <a style="text-decoration: none;" href='"""+http.request.env['ir.config_parameter'].sudo().get_param('web.base.url')+"""/evaluacion/"""+str(result[0][0])+"""'><center><div class="btn" style="background-color: #e66231;color: white;font-size: 3em;font-weight: bold;    -webkit-box-shadow: 0 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12), 0 8px 10px -7px rgba(0,0,0,0.2);box-shadow: 0 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12), 0 8px 10px -7px rgba(0,0,0,0.2)">Contestar encuesta</div></center></a>
 				  </body>
 				</html>
 				"""
 
-		
+		import base64
+		aaa = bytes(vars['data']['canvas'].split(',')[1], 'utf-8')
+		with open(path+"/tickets/"+reference[len(reference)-1]+".png", "wb") as fh:
+			fh.write(base64.decodebytes(aaa))
+
+		fp = open(path+"/tickets/"+reference[len(reference)-1]+".png", 'rb')                                                    
+		img = MIMEImage(fp.read())
+		fp.close()
+		msg.add_header('Content-Disposition', 'attachment', filename=reference[len(reference)-1]+'.png')
+		msg.attach(img)
+
 		msg.attach(MIMEText(body, 'html'))
-		
 		text = msg.as_string()
 
 		server = smtplib.SMTP('smtp.gmail.com', 587)
