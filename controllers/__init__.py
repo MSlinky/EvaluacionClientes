@@ -193,7 +193,7 @@ class EvaluacionClientes(http.Controller):
 		fp = open(path+"/tickets/"+reference[len(reference)-1]+".png", 'rb')                                                    
 		img = MIMEImage(fp.read())
 		fp.close()
-		msg.add_header('Content-Disposition', 'attachment', filename=reference[len(reference)-1]+'.png')
+		img.add_header('Content-Disposition', 'attachment; filename='+reference[len(reference)-1]+'.png')
 		msg.attach(img)
 
 		msg.attach(MIMEText(body, 'html'))
