@@ -3,7 +3,7 @@
 	<template id="assets_backend_evaluacion" name="point_of_sale assets" inherit_id="point_of_sale.assets">
 	    <xpath expr="." position="inside">
 			<script type="text/javascript" src="/EvaluacionClientes/static/js/html2canvas.min.js"></script>
-	    <script type="text/javascript" src="/EvaluacionClientes/static/js/evaluacion.js?ver=0.0.18"></script>
+	    <script type="text/javascript" src="/EvaluacionClientes/static/js/evaluacion.js"></script>
 			<script type="text/javascript" src="/EvaluacionClientes/static/js/jquery.signaturepad.min.js"></script>
         </xpath>
 	</template>
