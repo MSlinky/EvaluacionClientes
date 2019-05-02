@@ -63,6 +63,8 @@ odoo.define('EvaluacionClientes.form', function(require) {
 
 			$('html').on('click', '.receipt-screen.screen .button.next.highlight', function(){
 
+				$(".clear").trigger("click");
+
 		    var base = require('web_editor.base');
 				var ajax = require('web.ajax');
 				var core = require('web.core');
