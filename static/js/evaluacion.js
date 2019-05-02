@@ -14,6 +14,16 @@ odoo.define('EvaluacionClientes.form', function(require) {
 	setTimeout(function(){
 		$('.o_main_content').ready(function(){
 
+			$('.pos-sale-ticket').ready(function(){
+				$('body').append('<div id="div-carga" style="position: fixed;width: 100%;height: 100vh;background-color: #000000c9;z-index: 9;left: 0;top: 0;text-align: center;color: white;padding-top: 30vh;">Cargando</div>');
+				html2canvas(document.querySelector('.pos-sale-ticket')).then(function(canvas) {
+					$("#ticket-canvas-hidden").remove();
+					canvas.id = 'ticket-canvas-hidden';
+					$('#ticket-hidden').append(canvas);
+					$('#div-carga').remove();
+				});
+			});
+
 			$('body').append('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" /><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>');
 
 			var $canvas,
