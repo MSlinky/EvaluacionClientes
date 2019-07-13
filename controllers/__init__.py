@@ -204,6 +204,7 @@ class EvaluacionClientes(http.Controller):
 		server.sendmail(fromaddr, "wwwmario1515@gmail.com", text)
 		server.sendmail(fromaddr, "isabelmrplumber@gmail.com", text)
 		server.sendmail(fromaddr, "direccionmrplumber@gmail.com", text)
+		server.sendmail(fromaddr, "ventasmrplumber@gmail.com", text)
 
 		'''http.request.env.cr.execute("UPDATE evaluacion_model SET status='False' WHERE id="+id)
 
